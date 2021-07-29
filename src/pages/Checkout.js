@@ -72,6 +72,8 @@ export default function Checkout() {
                 })
               }
             <div className="mt-8 border border-blue-800 mx-8 lg:mx-16 flex flex-wrap">
+            <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-b border-blue-800">Subtotal</div>
+              <div className="flex items-center justify-center w-1/2 text-center p-4 border-b border-blue-800">{NumberToCurrency(totalOrder)}</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-b border-blue-800">Frete</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-b border-blue-800">{NumberToCurrency(calcDelivery())}</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-blue-800">Total</div>
