@@ -3,10 +3,12 @@ import Images from '../components/Images';
 import { NumberToCurrency } from '../utils/moneyFormat';
 import ShopCart from '../assets/cart-icon.svg';
 import { useCart } from '../context/Cart';
+import { useHistory } from 'react-router-dom';
 export default function Card(props) {
 
   const { image, name, price, score } = props.item;
   const { setItems } = useCart();
+  const history = useHistory();
 
   return (
     <div className="max-w-xs mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-lg">
@@ -25,6 +27,7 @@ export default function Card(props) {
                 src={ShopCart}
                 onClick={() => {
                   setItems(props.item);
+                  history.push('/checkout');
                 }}
               />
             </div>

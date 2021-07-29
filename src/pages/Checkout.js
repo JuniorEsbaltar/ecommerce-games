@@ -61,17 +61,17 @@ export default function Checkout() {
             <div className="text-center text-sm sm:text-md max-w-sm mx-auto mt-8 text-blue-200 px-8 lg:px-0">
               Informações sobre seu pedido
             </div>
-            <div className="mt-8 border border-blue-800 mx-8 lg:mx-16 flex flex-wrap">
               {
                 cartItems.map(({name, id, price}) => {
                   return (
-                    <div key={id}className="flex">
+                    <div key={id} className="border border-blue-800 mx-8 lg:mx-16 flex flex-wrap">
                       <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-b border-blue-800">{name}</div>
                       <div className="flex items-center justify-center w-1/2 text-center p-4 border-b border-blue-800">{NumberToCurrency(price)}</div>
                     </div>
                   )
                 })
               }
+            <div className="mt-8 border border-blue-800 mx-8 lg:mx-16 flex flex-wrap">
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-b border-blue-800">Frete</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-b border-blue-800">{NumberToCurrency(calcDelivery())}</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-blue-800">Total</div>

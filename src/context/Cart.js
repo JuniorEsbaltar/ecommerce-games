@@ -8,10 +8,7 @@ export default function CartProvider ({ children }) {
   const setItems = (product) => {
     if(!cartItems.find(item => item.id === product.id)){
       changeCart([...cartItems, product]);
-      alert('Item inserido com sucesso')
-    } else {
-      alert('Item já está no carrinho')
-    }
+    } 
   };
 
   const changeCart = (items) => {

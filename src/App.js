@@ -6,7 +6,6 @@ import CartProvider from './context/Cart'
 function App() {
   return (
     <CartProvider>
-      <Header />
       <Routes />
     </CartProvider>
   );
