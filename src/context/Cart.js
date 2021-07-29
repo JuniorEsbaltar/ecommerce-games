@@ -6,30 +6,37 @@ export default function CartProvider ({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
   const setItems = (product) => {
-    console.log(product)
     if(!cartItems.find(item => item.id === product.id)){
-      localStorage.setItem('cart', JSON.stringify([...cartItems, product]));
-      
-      setCartItems([...cartItems, product])
+      changeCart([...cartItems, product]);
       alert('Item inserido com sucesso')
     } else {
       alert('Item já está no carrinho')
     }
   };
 
+  const changeCart = (items) => {
+    localStorage.setItem('cart', JSON.stringify(items));
+    setCartItems(items);
+  }
+
+  const removeItem = (id) => {
+    const filtredItems = cartItems.filter(item => item.id !== id);
+    changeCart(filtredItems);
+  }
+
   useEffect(() => {
     const cart = localStorage.getItem('cart');
     if(!cart) return;
     
     setCartItems(JSON.parse(cart))
-    console.log(JSON.parse(cart))
   }, [])
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
-        setItems
+        setItems,
+        removeItem
       }}
     >
       {children}
@@ -39,6 +46,6 @@ export default function CartProvider ({ children }) {
 
 export function useCart() {
   const context = useContext(CartContext);
-  const { cartItems, setItems } = context;
-  return { cartItems, setItems };
+  const { cartItems, setItems, removeItem } = context;
+  return { cartItems, setItems, removeItem };
 }
