@@ -79,7 +79,7 @@ export default function Checkout() {
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-blue-800">Total</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4">{NumberToCurrency(totalOrder + calcDelivery())}</div>
             </div>
-            <Link to="/" className="block flex items-center justify-center bg-blue-800 hover:bg-blue-700 p-8 text-md font-semibold text-gray-300 uppercase mt-8" href="#">
+            <Link to="/thank-you" className="block flex items-center justify-center bg-blue-800 hover:bg-blue-700 p-8 text-md font-semibold text-gray-300 uppercase mt-8" href="#">
               <span>Finalizar Compra</span>
               <span className="font-medium text-gray-300 ml-2">➔</span>
             </Link>

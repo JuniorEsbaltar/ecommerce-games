@@ -7,7 +7,7 @@ import '../styles/components/header.css';
 export default function Header() {
   const { cartItems } = useCart();
   return (
-    <nav className="header-page flex justify-between">
+    <nav className="header-page flex justify-between z-10 inset-x-0 top-0 fixed">
       <div className="flex items-center space-x-3">
         <Link className="h-14 w-14" to="/">
           <img alt="Logo" src="https://i1.sndcdn.com/artworks-000240552628-z0xnxr-t500x500.jpg" />
