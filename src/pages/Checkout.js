@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import images from "../components/Images";
+import Loading from "../components/Loading";
 import { useCart } from "../context/Cart";
 import { NumberToCurrency } from '../utils/moneyFormat';
 
 export default function Checkout() {
   const [totalOrder, setTotalOrder] = useState(100);
-  const { cartItems, removeItem } = useCart();
+  const [isLoading, setIsloading] = useState(false);
+  
+  const { cartItems, removeItem, cleanCart } = useCart();
+  const history = useHistory();
 
   const calcDelivery = () => {
     const deliveryPrice = cartItems.length * 10;
@@ -17,9 +21,32 @@ export default function Checkout() {
   useEffect(() => {
     const totalByItems = cartItems.reduce((actual, item) => actual + item.price, 0);
     setTotalOrder(totalByItems);
-  }, [cartItems])
+  }, [cartItems]);
+
+  const handleOrder = () => {
+    if(!cartItems.length) return;
+    setIsloading(true);
+
+    localStorage.setItem(
+      'order', 
+      JSON.stringify({
+        cartItems,
+        subtotal: NumberToCurrency(totalOrder),
+        frete: NumberToCurrency(calcDelivery()),
+        total: NumberToCurrency(totalOrder + calcDelivery()),
+      })
+    );
+    
+    
+    setTimeout(() => {
+      cleanCart();
+      setIsloading(false);
+      history.push('/thank-you')
+    }, 2000);
+  }
 
   return <>
+    { isLoading ? <Loading /> : ''}
     <div className="antialiased max-w-6xl mx-auto my-12 px-8">
       <div className="relative block md:flex items-center">
         <div className="w-full md:w-1/2 relative z-1 bg-gray-100 rounded shadow-lg overflow-hidden">
@@ -33,7 +60,7 @@ export default function Checkout() {
                       <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
                         <img className="h-10 object-cover md:w-10" src={images[image]} alt={name} />
                       </div>
-                      <span className="text-gray-700 text-lg ml-3">{name}</span>
+                      <span className="text-gray-700 text-lg mx-3">{name}</span>
                       <div className="align-end">
                         <button 
                           className="uppercase p-3 flex items-center bg-red-500 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-9 h-9"
@@ -79,10 +106,13 @@ export default function Checkout() {
               <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-blue-800">Total</div>
               <div className="flex items-center justify-center w-1/2 text-center p-4">{NumberToCurrency(totalOrder + calcDelivery())}</div>
             </div>
-            <Link to="/thank-you" className="block flex items-center justify-center bg-blue-800 hover:bg-blue-700 p-8 text-md font-semibold text-gray-300 uppercase mt-8" href="#">
+            <div
+              className="cursor-pointer block flex items-center justify-center bg-blue-800 hover:bg-blue-700 p-8 text-md font-semibold text-gray-300 uppercase mt-8"
+              onClick={() => handleOrder()}
+            >
               <span>Finalizar Compra</span>
               <span className="font-medium text-gray-300 ml-2">➔</span>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

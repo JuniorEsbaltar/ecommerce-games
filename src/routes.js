@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import AfterCheckout from './pages/AfterCheckout';
 import Checkout from './pages/Checkout';
@@ -11,11 +12,16 @@ export default function Routes() {
       <div className="mb-20">
         <Header />
       </div>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/thank-you" component={AfterCheckout} />
-      </Switch>
+      <div className="body">
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/thank-you" component={AfterCheckout} />
+        </Switch>
+      </div>
+      <div className="mt-10 footer">
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 }

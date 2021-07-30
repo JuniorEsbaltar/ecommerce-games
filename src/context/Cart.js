@@ -21,19 +21,25 @@ export default function CartProvider ({ children }) {
     changeCart(filtredItems);
   }
 
+  const cleanCart = () => {
+    setCartItems([]);
+    localStorage.removeItem('cart');
+  }
+
   useEffect(() => {
     const cart = localStorage.getItem('cart');
     if(!cart) return;
     
     setCartItems(JSON.parse(cart))
-  }, [])
+  }, []);
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
         setItems,
-        removeItem
+        removeItem,
+        cleanCart
       }}
     >
       {children}
@@ -43,6 +49,6 @@ export default function CartProvider ({ children }) {
 
 export function useCart() {
   const context = useContext(CartContext);
-  const { cartItems, setItems, removeItem } = context;
-  return { cartItems, setItems, removeItem };
+  const { cartItems, setItems, removeItem, cleanCart } = context;
+  return { cartItems, setItems, removeItem, cleanCart };
 }

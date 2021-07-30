@@ -72,13 +72,13 @@ export default function Home() {
         </div>
       </div>
       <div>
-      {items.map(item => {
-        return (
-          <div className="mt-10" key={item.id}>
-            <Card item={item}/> 
-          </div>
-        )
-        
+      {
+        items.map(item => {
+          return (
+            <div className="mt-10" key={item.id}>
+              <Card item={item}/> 
+            </div>
+          )
       })}
       </div>
     </div>
