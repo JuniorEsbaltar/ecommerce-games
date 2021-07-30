@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import images from '../components/Images';
 import { NumberToCurrency } from '../utils/moneyFormat';
-
+import SansImage from '../assets/sans.png'
 export default function AfterCheckout () {
   const [order, setOrder] = useState({});
 
@@ -19,7 +19,10 @@ export default function AfterCheckout () {
     <div className="flex items-center justify-center p-10">
       <div className="max-w-lg w-full rounded-lg shadow-lg p-4 ">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-2xl mb-4">Obrigado pela compra !</p>
+          <div className="flex items-center">
+            <p className="text-2xl mb-4">Obrigado pela compra !</p>
+            <img className="w-16 h-30 ml-5" alt="Sans" src={SansImage}/>
+          </div>
           <p>Itens do pedido:</p>
         </div>
         <ul>

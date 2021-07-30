@@ -72,14 +72,17 @@ export default function Home() {
         </div>
       </div>
       <div>
-      {
-        items.map(item => {
-          return (
-            <div className="mt-10" key={item.id}>
-              <Card item={item}/> 
-            </div>
-          )
-      })}
+      <div className="flex flex-col justify-center items-center">
+        {
+          items.map(item => {
+            return (
+              <div className="mt-10" key={item.id}>
+                <Card item={item}/> 
+              </div>
+            )
+          })
+        }
+      </div>
       </div>
     </div>
   )
