@@ -36,9 +36,9 @@ export default function Home() {
         </div>
         <small><p>Tenha determinação!</p></small>
       </div>
-      <div className="flex justify-between m-7">
+      <div className="flex justify-between m-7 mb-0">
         <div 
-          className="flex"
+          className="flex cursor-pointer"
           onClick={() => filterType('name')}
           >
           <p className="mr-2">Nome</p>
@@ -49,7 +49,7 @@ export default function Home() {
           />
         </div>
         <div 
-          className="flex"
+          className="flex cursor-pointer"
           onClick={() => filterType('score')}
           >
           <p className="mr-2">Score</p>
@@ -60,7 +60,7 @@ export default function Home() {
           />
         </div>
         <div 
-          className="flex"
+          className="flex cursor-pointer"
           onClick={() => filterType('price')}
         >
           <p className="mr-2">Preço</p>
